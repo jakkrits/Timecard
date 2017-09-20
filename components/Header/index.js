@@ -57,23 +57,27 @@ class Header extends React.Component {
     <div>
       <div className="field is-grouped">
         <p className="control">
-          <a className="button is-primary" href="/profile">
-            <span className="icon">
-              <i className="fa fa-user-circle" />
-            </span>
-            <span>{this.props.data.user.firstName}</span>
-          </a>
+          <Link route="/profile">
+            <a className="button is-primary">
+              <span className="icon">
+                <i className="fa fa-user-circle" />
+              </span>
+              <span>{this.props.data.user.firstName}</span>
+            </a>
+          </Link>
         </p>
         <p className="control">
-          <a
-            className="button"
-            href="/"
-            onClick={() => this.props.actions.logout()}
-          >
-            <span className="icon">
-              <i className="fa fa-sign-out" />
-            </span>
-          </a>
+          <Link route="/">
+            <a
+              className="button"
+              role="presentation"
+              onClick={() => this.props.actions.logout()}
+            >
+              <span className="icon">
+                <i className="fa fa-sign-out" />
+              </span>
+            </a>
+          </Link>
         </p>
       </div>
     </div>
@@ -82,12 +86,14 @@ class Header extends React.Component {
   renderLoggedOut = () => (
     <div className="field is-grouped">
       <p className="control">
-        <a className="button is-primary" href="signin">
-          <span className="icon">
-            <i className="fa fa-sign-in" />
-          </span>
-          <span>Login</span>
-        </a>
+        <Link route="/signin">
+          <a className="button is-primary">
+            <span className="icon">
+              <i className="fa fa-sign-in" />
+            </span>
+            <span>Login</span>
+          </a>
+        </Link>
       </p>
     </div>
   );
