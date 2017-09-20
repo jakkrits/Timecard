@@ -7,9 +7,6 @@ const LinkList = ({ pathname, authenticated, logout }) => (
     <Link prefetch href="/" passHref>
       <A active={pathname === '/'}>Main Page</A>
     </Link>
-    <Link prefetch route="create" passHref>
-      <A active={pathname === '/create_post'}>Create</A>
-    </Link>
     {!authenticated && (
       <Link prefetch route="signin" passHref>
         <A active={pathname === '/sign_in'}>SignIn</A>
@@ -30,13 +27,6 @@ const LinkList = ({ pathname, authenticated, logout }) => (
         LogOut
       </LogOutButton>
     )}
-    <A
-      href="https://github.com/Sly777/ran"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      RAN! @ Github
-    </A>
   </nav>
 );
 
