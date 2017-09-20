@@ -6,27 +6,87 @@ type File implements Node {
   createdAt: DateTime!
   id: ID! @isUnique
   name: String!
+  owner: User @relation(name: "ImageOwner")
   secret: String! @isUnique
   size: Int!
   updatedAt: DateTime!
   url: String! @isUnique
 }
 
-type User implements Node {
+type Timesheet implements Node {
   createdAt: DateTime!
-  email: String @isUnique
   id: ID! @isUnique
-  password: String
+  rating: Int
+  remark: String
+  timeCode: TimesheetCode
   updatedAt: DateTime!
-  firstName: String!
-  lastName: String!
+  workday: DateTime
+  user: User @relation(name: "UserTimesheets")
 }
 
-type Post implements Node {
-  createdAt: DateTime!
+type User implements Node {
   id: ID! @isUnique
-  title: String!
+  auth0UserId: String @isUnique
+  createdAt: DateTime!
   updatedAt: DateTime!
-  url: String!
-  votes: Int @defaultValue(value: 0)
+  email: String @isUnique
+  firstName: String
+  lastName: String
+  nickName: String
+  image: File @relation(name: "ImageOwner")
+  branch: Branch
+  cellPhone: String
+  dateOfBirth: DateTime
+  department: Department
+  employedDate: DateTime
+  idCardNumber: String
+  leaveWithPay: Int
+  savingsAccountID: String
+  savingsBank: String
+  shift: Shift
+  password: String
+  vacation: Int
+  role: UserRole
+  timesheets: [Timesheet!]! @relation(name: "UserTimesheets")
+}
+
+enum Branch {
+  BAN_KOH
+  SAVE_ONE
+  KHON_KHAN
+}
+
+enum Department {
+  SERVER
+  KITCHEN
+  DISHWASHER
+  DAILY
+  MANAGER
+  OWNER
+}
+
+enum Shift {
+  MORNING
+  MID
+  GRAVEYARD
+}
+
+enum TimesheetCode {
+  R
+  OT
+  H
+  H1
+  V
+  L
+  L1
+  S
+  S1
+  A
+  A1
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+  MANAGER
 }
