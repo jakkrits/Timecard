@@ -32,7 +32,7 @@ class Default extends React.Component {
         <div
           style={{
             minHeight: 'calc(100vh - 200px)',
-            padding: '40px 40px 40px 40px'
+            padding: '8px 40px 40px 40px'
           }}
         >
           {this.props.children}

@@ -1,39 +1,9 @@
-/*
-import PropTypes from 'prop-types';
-import LinkList from '../../components/LinkList';
-import { Header as StyledHeader } from './styles';
-import connect from './store';
-
-const Header = ({ pathname, authenticated, actions: { logout } }) => (
-  <StyledHeader>
-    <LinkList
-      pathname={pathname}
-      authenticated={authenticated}
-      logout={logout}
-    />
-  </StyledHeader>
-);
-
-Header.defaultProps = {
-  authenticated: false
-};
-
-Header.propTypes = {
-  pathname: PropTypes.string.isRequired,
-  authenticated: PropTypes.bool,
-  actions: PropTypes.shape({
-    logout: PropTypes.func.isRequired
-  }).isRequired
-};
-
-export default connect(Header);
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, gql } from 'react-apollo';
 import Spinner from '../Spinner';
 import { Link } from '../../routes';
+import { Header as StyledHeader } from './styles';
 import connect from './store';
 
 // eslint-disable-next-line
@@ -67,17 +37,15 @@ class Header extends React.Component {
           </Link>
         </p>
         <p className="control">
-          <Link route="/">
-            <a
-              className="button"
-              role="presentation"
-              onClick={() => this.props.actions.logout()}
-            >
-              <span className="icon">
-                <i className="fa fa-sign-out" />
-              </span>
-            </a>
-          </Link>
+          <a
+            className="button"
+            role="presentation"
+            onClick={() => this.props.actions.logout()}
+          >
+            <span className="icon">
+              <i className="fa fa-sign-out" />
+            </span>
+          </a>
         </p>
       </div>
     </div>
@@ -104,82 +72,84 @@ class Header extends React.Component {
       return <Spinner />;
     }
     return (
-      <nav className="navbar is-transparent">
-        <div className="navbar-brand">
-          <Link prefetch route="/" passHref>
-            <a className="navbar-item">
-              <img
-                src="/static/ChewloungeLogo.png"
-                alt="Logo"
-                width="112"
-                height="28"
-              />
+      <StyledHeader>
+        <nav className="navbar is-transparent">
+          <div className="navbar-brand">
+            <Link prefetch route="/" passHref>
+              <a className="navbar-item">
+                <img
+                  src="/static/ChewloungeLogo.png"
+                  alt="Logo"
+                  width="112"
+                  height="28"
+                />
+              </a>
+            </Link>
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://facebook.com/chewlounge"
+            >
+              <span className="icon" style={{ color: '#333' }}>
+                <i className="fa fa-facebook" />
+              </span>
             </a>
-          </Link>
-          <a
-            className="navbar-item is-hidden-desktop"
-            href="https://facebook.com/chewlounge"
-          >
-            <span className="icon" style={{ color: '#333' }}>
-              <i className="fa fa-facebook" />
-            </span>
-          </a>
 
-          <a
-            className="navbar-item is-hidden-desktop"
-            href="https://twitter.com/chewlounge"
-          >
-            <span className="icon" style={{ color: '#55acee' }}>
-              <i className="fa fa-twitter" />
-            </span>
-          </a>
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/chewlounge"
+            >
+              <span className="icon" style={{ color: '#55acee' }}>
+                <i className="fa fa-twitter" />
+              </span>
+            </a>
 
-          <div
-            className="navbar-burger burger"
-            data-target="navMenuTransparent"
-            onClick={this.toggleBurger}
-            role="presentation"
-          >
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-
-        <div id="navMenuTransparent" className="navbar-menu">
-          <div className="navbar-start">
-            <Link prefetch href="/" passHref>
-              <a
-                className={
-                  pathname === '/' && 'nav-item is-active'
-                    ? 'nav-item  is-active'
-                    : 'nav-item'
-                }
-              >
-                หน้าแรก
-              </a>
-            </Link>
-
-            <Link prefetch href="/about">
-              <a
-                className={
-                  pathname === '/about' && 'nav-item is-active'
-                    ? 'nav-item  is-active'
-                    : 'nav-item'
-                }
-              >
-                วิธีใช้งาน
-              </a>
-            </Link>
-          </div>
-
-          <div className="navbar-end">
-            <div className="navbar-item">
-              {authenticated ? this.renderLoggedIn() : this.renderLoggedOut()}
+            <div
+              className="navbar-burger burger"
+              data-target="navMenuTransparent"
+              onClick={this.toggleBurger}
+              role="presentation"
+            >
+              <span />
+              <span />
+              <span />
             </div>
           </div>
-        </div>
-      </nav>
+
+          <div id="navMenuTransparent" className="navbar-menu">
+            <div className="navbar-start">
+              <Link prefetch href="/" passHref>
+                <a
+                  className={
+                    pathname === '/' && 'nav-item is-active'
+                      ? 'nav-item  is-active'
+                      : 'nav-item'
+                  }
+                >
+                  หน้าแรก
+                </a>
+              </Link>
+
+              <Link prefetch href="/about">
+                <a
+                  className={
+                    pathname === '/about' && 'nav-item is-active'
+                      ? 'nav-item  is-active'
+                      : 'nav-item'
+                  }
+                >
+                  วิธีใช้งาน
+                </a>
+              </Link>
+            </div>
+
+            <div className="navbar-end">
+              <div className="navbar-item">
+                {authenticated ? this.renderLoggedIn() : this.renderLoggedOut()}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </StyledHeader>
     );
   }
 }
