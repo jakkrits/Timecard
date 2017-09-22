@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import AuthFields from '../AuthFields';
 import validate from '../AuthFields/validation';
 import connect from './store';
@@ -71,11 +72,28 @@ class SignInForm extends React.Component {
         if (response.data) {
           this.props.actions.signIn(response.data.signinUser.token);
         }
+        Router.push('/profile');
       })
       .catch(err => {
         this.getServerErrors(err);
       });
   }
+
+  returnErrorMessage = () => {
+    if (
+      Object.keys(this.state.errors).length === 0 &&
+      !this.state.serverErrors.message
+    ) {
+      return <p />;
+    }
+    return (
+      <span className="tag is-danger">
+        {' '}
+        {Object.keys(this.state.errors).length === 0 &&
+          this.state.serverErrors.message}
+      </span>
+    );
+  };
 
   render() {
     const fields = this.formFields;
@@ -102,10 +120,7 @@ class SignInForm extends React.Component {
           selectFields="signinFields"
         />
         <br />
-        <div>
-          {Object.keys(this.state.errors).length === 0 &&
-            this.state.serverErrors.message}
-        </div>
+        {this.returnErrorMessage()}
       </div>
     );
   }

@@ -15,7 +15,7 @@ const routes = require('next-routes')();
 // @RANStartRoutes
 routes.add('signin', '/sign_in');
 routes.add('signup', '/sign_up');
-routes.add('userProfile', '/profile');
+routes.add('profile', '/profile');
 // @RANEndRoutes
 // ------------ ROUTES ---------------
 //
