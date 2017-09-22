@@ -1,37 +1,4 @@
 import React from 'react';
-import SignInForm from '../components/SignInForm';
-import withData from '../libraries/withData';
-import DefaultCon from '../containers/Default';
-// import Redirect from '../libraries/redirect';
-// import checkUserLoggedIn from '../libraries/checkUserLoggedIn';
-// import { Link } from '../routes';
-/*
-export default withData(props => (
-  <DefaultCon title="Sign In" {...props}>
-    <SignInForm />
-  </DefaultCon>
-));
-*/
-// eslint-disable-next-line react/prefer-stateless-function
-class Signin extends React.Component {
-  // static async getInitialProps(context, apollo) {
-  //   const userExists = await checkUserLoggedIn(context, apollo);
-  //   if (userExists) {
-  //     Redirect(context, '/');
-  //   }
-  // }
-  render() {
-    return (
-      <DefaultCon title="ล็อคอิน" {...this.props}>
-        <SignInForm />
-      </DefaultCon>
-    );
-  }
-}
-
-export default withData(Signin);
-/*
-import React from 'react';
 import Auth0Lock from 'auth0-lock';
 import SignInForm from '../components/SignInForm';
 import withData from '../libraries/withData';
@@ -51,8 +18,8 @@ class Signin extends React.Component {
 
   componentDidMount() {
     const lock = new Auth0Lock(
-      'nRF8JVHj9lMFrY2uelAeisnVMmO7kQzY',
-      'LvyXxl1T4S3uFFzzn39GfKygBzptASCT4br75nwhmfvWJ3uD-lC_OZOmry62vwRa',
+      'MFWyRHfY9igbNcxtuKn8b8gHw1QeNmIN',
+      'uT3R4E9axhwgcj83VzbWEvoueFENkYa5lUITB8bduZeHiO_GggUWma_rslzjC_q4',
       {
         auth: {
           // redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
@@ -91,7 +58,7 @@ class Signin extends React.Component {
       <DefaultCon title="ล็อคอิน" {...this.props}>
         <div className="columns is-centered">
           <div className="column" />
-          <div className="column is-4 is-centered">
+          <div className="column is-4 is-text-centered">
             <SignInForm />
             <br />
             <a
@@ -121,4 +88,3 @@ class Signin extends React.Component {
 }
 
 export default withData(Signin);
-*/
