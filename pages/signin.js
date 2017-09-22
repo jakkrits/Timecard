@@ -43,7 +43,6 @@ class Signin extends React.Component {
           console.error('getUserInfo error', error); // eslint-disable-line
           return;
         }
-        console.log(__filename);
         console.error(JSON.stringify(profile, null, 4)); // eslint-disable-line
         this.signinOrCreateUser(result.idToken, profile);
       });

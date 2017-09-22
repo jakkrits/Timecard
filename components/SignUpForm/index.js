@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import AuthFields from '../AuthFields';
 import validate from '../AuthFields/validation';
 import connect from './store';
@@ -31,10 +32,11 @@ class SignUpForm extends React.Component {
   }
 
   formFields = [
-    { key: 1, attr: { name: 'firstName', type: 'text', label: 'First Name' } },
-    { key: 2, attr: { name: 'lastName', type: 'text', label: 'Last Name' } },
-    { key: 3, attr: { name: 'email', type: 'email', label: 'Email' } },
-    { key: 4, attr: { name: 'password', type: 'password', label: 'Password' } }
+    { key: 1, attr: { name: 'firstName', type: 'text', label: 'ชื่อจริง' } },
+    { key: 2, attr: { name: 'lastName', type: 'text', label: 'นามสกุล' } },
+    { key: 3, attr: { name: 'nickName', type: 'text', label: 'ชื่อเล่น' } },
+    { key: 4, attr: { name: 'email', type: 'email', label: 'อีเมลล์' } },
+    { key: 5, attr: { name: 'password', type: 'password', label: 'พาสเวิร์ด' } }
   ];
 
   handleTouch = () => {
@@ -72,6 +74,7 @@ class SignUpForm extends React.Component {
       .then(response => {
         if (response.data.signinUser) {
           this.props.actions.signIn(response.data.signinUser.token);
+          Router.replace('/profile');
         } else {
           this.setState({
             errors: response.data.createUser.errors
@@ -82,6 +85,22 @@ class SignUpForm extends React.Component {
         this.getServerErrors(err);
       });
   }
+
+  returnErrorMessage = () => {
+    if (
+      Object.keys(this.state.errors).length === 0 &&
+      !this.state.serverErrors.message
+    ) {
+      return <p />;
+    }
+    return (
+      <span className="tag is-danger">
+        {(Object.keys(this.state.errors).length === 0 &&
+          this.state.serverErrors.message) ||
+          'เกิดข้อผิดพลาด!'}
+      </span>
+    );
+  };
 
   render() {
     const fields = this.formFields;
@@ -108,10 +127,7 @@ class SignUpForm extends React.Component {
           handleTouch={this.handleTouch}
         />
         <br />
-        <div>
-          {Object.keys(this.state.errors).length === 0 &&
-            this.state.serverErrors.message}
-        </div>
+        {this.returnErrorMessage()}
       </div>
     );
   }

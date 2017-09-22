@@ -1,4 +1,5 @@
 import React from 'react';
+import { Columns, Column } from 'bloomer';
 import SignUpForm from '../components/SignUpForm';
 import withData from '../libraries/withData';
 import DefaultCon from '../containers/Default';
@@ -16,13 +17,13 @@ class Signup extends React.Component {
   render() {
     return (
       <DefaultCon title="ลงทะเบียน" {...this.props}>
-        <div className="columns">
-          <div className="column" />
-          <div className="column is-4">
+        <Columns isCentered>
+          <Column />
+          <Column isSize="4" hasTextAlign="centered">
             <SignUpForm />
-          </div>
-          <div className="column" />
-        </div>
+          </Column>
+          <Column />
+        </Columns>
       </DefaultCon>
     );
   }
