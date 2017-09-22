@@ -1,4 +1,5 @@
 import React from 'react';
+import { Columns, Column } from 'bloomer';
 import Auth0Lock from 'auth0-lock';
 import SignInForm from '../components/SignInForm';
 import withData from '../libraries/withData';
@@ -42,6 +43,7 @@ class Signin extends React.Component {
           console.error('getUserInfo error', error); // eslint-disable-line
           return;
         }
+        console.log(__filename);
         console.error(JSON.stringify(profile, null, 4)); // eslint-disable-line
         this.signinOrCreateUser(result.idToken, profile);
       });
@@ -56,9 +58,9 @@ class Signin extends React.Component {
   render() {
     return (
       <DefaultCon title="ล็อคอิน" {...this.props}>
-        <div className="columns is-centered">
-          <div className="column" />
-          <div className="column is-4 is-text-centered">
+        <Columns isCentered>
+          <Column />
+          <Column isSize="4" hasTextAlign="centered">
             <SignInForm />
             <br />
             <a
@@ -79,9 +81,9 @@ class Signin extends React.Component {
                 <a>สมัครใช้งาน</a>
               </Link>
             </p>
-          </div>
-          <div className="column" />
-        </div>
+          </Column>
+          <Column />
+        </Columns>
       </DefaultCon>
     );
   }

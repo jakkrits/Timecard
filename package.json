@@ -59,6 +59,7 @@
     "auth0-lock": "^10.20.0",
     "babel-plugin-inline-import-graphql-ast": "2.0.0",
     "babel-plugin-styled-components": "1.2.0",
+    "bloomer": "^0.6.2",
     "chalk": "2.1.0",
     "color": "2.0.0",
     "compression": "1.7.0",
