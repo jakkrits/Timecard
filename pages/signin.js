@@ -20,7 +20,7 @@ class Signin extends React.Component {
   componentDidMount() {
     const lock = new Auth0Lock(
       'MFWyRHfY9igbNcxtuKn8b8gHw1QeNmIN',
-      'uT3R4E9axhwgcj83VzbWEvoueFENkYa5lUITB8bduZeHiO_GggUWma_rslzjC_q4',
+      'appillustrator.au.auth0.com',
       {
         auth: {
           // redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
