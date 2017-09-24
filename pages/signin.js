@@ -20,6 +20,7 @@ class Signin extends React.Component {
 
   componentDidMount() {
     const lock = new Auth0Lock(CLIENT_ID, DOMAIN, {
+      // DISABLE FEATURE FOR NOW -> SEE DOMAIN IN CLIENT.JS
       auth: {
         // redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
         responseType: 'token'
