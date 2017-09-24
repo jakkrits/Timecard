@@ -7,6 +7,7 @@ import DefaultCon from '../containers/Default';
 import Redirect from '../libraries/redirect';
 import checkUserLoggedIn from '../libraries/checkUserLoggedIn';
 import { Link } from '../routes';
+import { CLIENT_ID, DOMAIN } from '../constants';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Signin extends React.Component {
@@ -18,23 +19,19 @@ class Signin extends React.Component {
   }
 
   componentDidMount() {
-    const lock = new Auth0Lock(
-      'MFWyRHfY9igbNcxtuKn8b8gHw1QeNmIN',
-      'appillustrator.au.auth0.com',
-      {
-        auth: {
-          // redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
-          responseType: 'token'
-        },
-        allowSignUp: false,
-        theme: {
-          logo: 'https://image.flaticon.com/icons/svg/325/325559.svg'
-        },
-        languageDictionary: {
-          title: 'ชิวเล้าจ์ล็อกอิน'
-        }
+    const lock = new Auth0Lock(CLIENT_ID, DOMAIN, {
+      auth: {
+        // redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
+        responseType: 'token'
+      },
+      allowSignUp: false,
+      theme: {
+        logo: 'https://image.flaticon.com/icons/svg/325/325559.svg'
+      },
+      languageDictionary: {
+        title: 'ชิวเล้าจ์ล็อกอิน'
       }
-    );
+    });
     this.lock = lock;
 
     lock.on('authenticated', result => {
